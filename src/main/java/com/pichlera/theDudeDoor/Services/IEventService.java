@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IEventService {
 
-    public void deleteEvent(Event event);
+    public void deleteEventById(Long eventId);
     public Event saveEvent(Event event);
     public Iterable<Event> findAllEvents();
     public Optional<Event> findEventByPerson(Person person);

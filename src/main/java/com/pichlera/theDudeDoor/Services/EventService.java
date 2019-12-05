@@ -19,22 +19,23 @@ public class EventService implements IEventService {
     }
 
     @Override
-    public void deleteEvent(Event event) {
-
+    public void deleteEventById(Long eventId) {
+        Event event = this.eventRepository.findEventById(eventId);
+        this.eventRepository.delete(event);
     }
 
     @Override
     public Event saveEvent(Event event) {
-        return null;
+        return this.eventRepository.save(event);
     }
 
     @Override
     public Iterable<Event> findAllEvents() {
-        return null;
+        return this.eventRepository.findAll();
     }
 
     @Override
     public Optional<Event> findEventByPerson(Person person) {
-        return Optional.empty();
+        return this.eventRepository.findEventsByPerson(person);
     }
 }
