@@ -1,5 +1,6 @@
 package com.pichlera.theDudeDoor.Controller;
 
+import com.google.gson.Gson;
 import com.pichlera.theDudeDoor.Models.Person;
 import com.pichlera.theDudeDoor.Services.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,17 @@ public class PersonController implements IPersonController {
 
     private IPersonService personService;
 
+
     @Autowired
     public PersonController(IPersonService personService) {
         this.personService = personService;
+
     }
 
-    @DeleteMapping("/persons/{personName}")
+    @DeleteMapping("/persons/{id}")
     @Override
-    public void deletePersonByName(@PathVariable String personName) {
-        this.personService.deletePersonByName(personName);
+    public void deletePersonById(@PathVariable Long id) {
+        this.personService.deletePersonById(id);
     }
 
     @PostMapping("/persons")

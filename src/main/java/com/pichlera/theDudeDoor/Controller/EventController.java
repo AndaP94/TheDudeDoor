@@ -1,5 +1,6 @@
 package com.pichlera.theDudeDoor.Controller;
 
+import com.google.gson.Gson;
 import com.pichlera.theDudeDoor.Models.Event;
 import com.pichlera.theDudeDoor.Services.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,12 @@ import java.util.Optional;
 public class EventController implements IEventController {
 
     private IEventService iEventService;
+    private Gson gson;
 
     @Autowired
-    public EventController(IEventService iEventService) {
+    public EventController(IEventService iEventService, Gson gson) {
         this.iEventService = iEventService;
+        this.gson = gson;
     }
 
     @DeleteMapping("/events/{id}")
@@ -25,7 +28,7 @@ public class EventController implements IEventController {
         this.iEventService.deleteEventById(id);
     }
 
-    @PostMapping("/events")
+    @PostMapping("/events/")
     @Override
     public Event saveEvent(@RequestBody Event event) {
         return this.iEventService.saveEvent(event);
@@ -37,9 +40,12 @@ public class EventController implements IEventController {
         return ResponseEntity.ok(this.iEventService.findEventsByPersonName(personName));
     }
 
-    @GetMapping("/events")
+    @GetMapping("/events/")
     @Override
     public ResponseEntity<Iterable<Event>> findAllEvents() {
-        return ResponseEntity.ok(this.iEventService.findAllEvents());
+
+        Event event = new Event();
+        Iterable<Event> events = this.iEventService.findAllEvents();
+        return ResponseEntity.ok(events);
     }
 }

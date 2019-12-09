@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface IPersonController {
 
-    public void deletePersonByName(String personName);
+    public void deletePersonById(Long id);
     public Person savePerson(Person person);
     public ResponseEntity<Iterable<Person>> findAllPerson();
     public Person findPersonByName(String name);

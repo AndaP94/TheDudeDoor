@@ -16,8 +16,9 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public void deletePersonByName(String personName) {
-        this.personRepository.deletePersonByName(personName);
+    public void deletePersonById(Long id) {
+        Person person = this.personRepository.findPersonById(id);
+        this.personRepository.delete(person);
     }
 
     @Override
