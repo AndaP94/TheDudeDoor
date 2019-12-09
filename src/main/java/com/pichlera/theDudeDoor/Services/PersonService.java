@@ -16,9 +16,8 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public void deletePersonById(Long personId) {
-        Person person = personRepository.findPersonById(personId);
-        this.personRepository.delete(person);
+    public void deletePersonByName(String personName) {
+        this.personRepository.deletePersonByName(personName);
     }
 
     @Override
@@ -29,6 +28,11 @@ public class PersonService implements IPersonService {
     @Override
     public Iterable<Person> findAllPerson() {
         return this.personRepository.findAll();
+    }
+
+    @Override
+    public Person findPersonByName(String personName) {
+        return this.personRepository.findPersonByName(personName);
     }
 
 

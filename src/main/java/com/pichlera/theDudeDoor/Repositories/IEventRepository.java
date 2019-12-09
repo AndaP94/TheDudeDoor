@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface IEventRepository extends CrudRepository<Event, Long> {
 
-    public Optional<Event> findEventsByPerson(Person person);
+    public Optional<Event> findEventsByPersonName(String personName);
     public Event findEventById(Long eventId);
 }

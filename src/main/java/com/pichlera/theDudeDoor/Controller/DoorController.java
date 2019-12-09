@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "https://localhost:4200")
 public class DoorController implements IDoorController {
 
     private IDoorService doorService;
@@ -19,25 +18,25 @@ public class DoorController implements IDoorController {
         this.doorService = doorService;
     }
 
-    @GetMapping("doors/{id}")
+    @GetMapping("/doors/{id}")
     @Override
     public Door getDoorById(@PathVariable Long id) {
         return this.doorService.findDoorById(id);
     }
 
-    @PostMapping
+    @PostMapping("/doors")
     @Override
-    public Door saveDoor(Door door) {
+    public Door saveDoor(@RequestBody Door door) {
         return this.doorService.saveDoor(door);
     }
 
-    @DeleteMapping("/doors/{id}")
+    @DeleteMapping(value = "/doors/{id}")
     @Override
-    public void deleteDoor(@PathVariable Long doorId) {
-        this.doorService.deleteDoorById(doorId);
+    public void deleteDoor(@PathVariable Long id) {
+        this.doorService.deleteDoorById(id);
     }
 
-    @GetMapping("doors")
+    @GetMapping("/doors")
     @Override
     public ResponseEntity<Iterable<Door>> findAllDoors() {
         return ResponseEntity.ok(this.doorService.findAllDoors());

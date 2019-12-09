@@ -1,15 +1,14 @@
 package com.pichlera.theDudeDoor.Controller;
 
 import com.pichlera.theDudeDoor.Models.Event;
-import com.pichlera.theDudeDoor.Models.Person;
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface IEventController {
 
-    public void deleteEvent(Event event);
+    public void deleteEventById(Long id);
     public Event saveEvent(Event event);
-    public Event findEventByPerson(Person person);
-    public ResponseEntity<List<Event>> findAllEvents();
+    public ResponseEntity<Optional<Event>> findEventsByPersonName(String personName);
+    public ResponseEntity<Iterable<Event>> findAllEvents();
 }

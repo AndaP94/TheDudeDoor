@@ -35,7 +35,7 @@ public class EventService implements IEventService {
     }
 
     @Override
-    public Optional<Event> findEventByPerson(Person person) {
-        return this.eventRepository.findEventsByPerson(person);
+    public Optional<Event> findEventsByPersonName(String personName) {
+        return this.eventRepository.findEventsByPersonName(personName);
     }
 }
